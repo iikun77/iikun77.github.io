@@ -1,0 +1,471 @@
+ /* CSS 样式，用于美化页面外观 */
+
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      /*#f1f1f1*/
+      background-color: #4f4f4f;
+      overflow-x: hidden;
+      /* 隐藏原生滚动条 */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 和 Edge */      
+    }
+    body::-webkit-scrollbar {
+      width: 8px; /* 设置滚动条的宽度 */
+    }
+
+    body::-webkit-scrollbar-track {
+      background-color: #f1f1f1; /* 设置滚动条的背景颜色 */
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background-color: #888; /* 设置滚动条滑块的颜色 */
+      border-radius: 4px; /* 设置滚动条滑块的圆角 */
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+      background-color: #555; /* 设置滚动条滑块在悬停时的颜色 */
+    }
+    .container-father{
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+/*    .body{
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }*/
+    .container {
+      flex: 1;
+      max-width: 95vw;
+      /*max-height: 90vh;*/
+      width: 90vw;
+      height: 90vh;
+      margin: 0 auto;
+      /*顶部黑边*/
+      margin-top: 10px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px 10px 10px 10px;
+      /*overflow: hidden;*/
+    }
+    .content {
+      max-height: 100vh;
+      /*margin: auto;*/
+      overflow: auto;/*滚动条*/
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0 3px 3px 3px;
+      display: flex;
+      flex-wrap: wrap;
+      /*justify-content: space-between;*/
+      justify-content: center;
+      align-items: center;
+    }    
+    .tabs {
+      margin-bottom: 20px;
+    }
+    
+    .tab {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #eee;
+
+      cursor: pointer;
+      border-radius: 5px 5px 5px 5px;
+    }
+    
+    .tab.active {
+      background-color: #d3d3d3;/*#f0f0f0*/
+      color: #000;  /*选中的菜单栏文字颜色 */
+      border-bottom: 2px solid #000; /* 添加下划线表示选中 */
+    }
+    
+
+    .dom1 {
+      flex: 1;
+      width: 800px;
+      height:600px;
+      /*display: inline-flex;*/
+      margin-left: 80px;
+      padding: 15px;
+      float: left;
+
+    }
+    .dom2 {
+      flex: 1;
+      width: 800px;
+      height:600px;
+      /*display: inline-flex;*/
+      margin-left: 50px;
+      padding: 15px;
+      position: relative;
+      float: left;
+
+
+    }    
+    .main1-select {
+      /* 调整 select 框的样式适配 .dom1 的样式 */
+      width: 20%; /* 宽度占满 .dom1 容器 */
+      padding: 8px; /* 内边距 */
+      font-size: 14px; /* 字体大小 */
+      border: 1px solid #ccc; /* 边框样式 */
+      border-radius: 4px; /* 边框圆角 */
+      background-color: #f5f5f5; /* 背景颜色 */
+      color: #333; /* 字体颜色 */
+      position: absolute;
+      top: 10px; /* 调整 select 相对于图形的垂直位置 */
+      right: 15px; /* 调整 select 相对于图形的水平位置 */
+      z-index: 9999; /* 保证 select 悬浮在图形上方 */      
+    }
+
+/*    .dom2 {
+      width: 800px;
+      height:600px;
+      display: inline-flex;
+      margin-left: 25px;
+      padding: 15px;
+    }*/
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+    }
+    
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      text-align:center
+    }
+    
+    th {
+      background-color: #f1f1f1;
+    }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 600px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.modal-content-change-password {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px;
+  height: 300px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+.modal-content-change-password h2{
+  color: #000;
+}
+.modal-input {
+  margin-bottom: 10px;
+  width: 95%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+.modal-buttons-container {
+  display: flex;
+  justify-content: center;
+}
+.modal-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 10px;
+
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#register-form label {
+  display: inline-block;
+  width: 120px;
+  margin-bottom: 5px;
+}
+
+#register-form input[type="text"],
+#register-form input[type="password"],
+#register-form input[type="number"] {
+  width: 390px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#register-form select {
+  width: 400px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#register-form button {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100px;
+}
+
+#register-form button:hover {
+  background-color: #45a049;
+}
+
+
+
+    .time-range {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    
+    .time-range label {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    
+    .time-range input {
+      width: 150px;
+      padding: 5px;
+    }
+    
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .actions button {
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .user-dropdown {
+      position: relative;
+      display: inline-block;
+      margin-left: 10px; /* 添加左边距以与其他标签分隔开 */
+      margin-bottom: 20px;
+    }
+
+    .user-dropdown-select {
+      /* 使用与其他标签相同的样式 */
+/*      display: inline-block;
+      padding: 10px 20px;
+      background-color: #eee;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      appearance: none;*/
+
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #eee;
+      cursor: pointer;
+      border-radius: 5px 5px 5px 5px;
+      appearance: none;
+    }
+
+    .user-dropdown-content {
+      /* 使用与其他标签相同的样式 */
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 100px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 5px 10px;
+      z-index: 1;
+    }
+
+    .user-dropdown-content a {
+      /* 使用与其他标签相同的样式 */
+      color: black;
+      text-decoration: none;
+      display: block;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .user-dropdown-content a:hover {
+      /* 使用与其他标签相同的样式 */
+      background-color: #f1f1f1;
+    }
+
+    .user-dropdown:hover .user-dropdown-content {
+      /* 使用与其他标签相同的样式 */
+      display: block;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+#footer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+#jsi-flying-fish-container {
+  width: 100vw;
+  height: 15vh;
+  /*margin-top: 10px;*/
+  position: relative;
+   /*#4f4f4f;*/
+  background-color: #4f4f4f;
+}
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background-color: transparent; /* 设置合适的背景颜色 */
+  padding: 10px;
+  text-align: center;
+  color: gray;
+}
+
+ /* Reset default margins and paddings */
+header {
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+nav {
+    margin-left: auto;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+}
+nav ul li {
+    margin-left: 20px;
+    justify-content: flex-end;
+
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 10px; /* Increase the padding to increase click area */
+    line-height: 1;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 10px; /* Increase the padding to increase click area */
+    line-height: 1;
+}
+nav ul li:hover {
+    color: #f0f0f0;
+    background-color: #333;
+    border-radius: 5px;
+}
+.table-li.active {
+/*  background-color: #d3d3d3;
+  color: #000;*/
+  border-bottom: 2px solid #000; /* 添加下划线表示选中 */
+}
+.dropdown {
+    position: relative; /* Set the positioning context for the dropdown */
+    /*width: 150px*/
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    top: 100%; /* Change this value as needed */
+    z-index: 1;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 8px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #737373;
+}
+
+.show {
+    display: block;
+}
+

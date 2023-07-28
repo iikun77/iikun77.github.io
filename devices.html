@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>系统界面</title>
+  <link rel="stylesheet" href="./css/cursor.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="./css/devices.css">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4163735_kg8psu63r7.css">
+  <!-- <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script> -->
+  <script type="text/javascript" src="./js/jquery.js"></script>
+  <script type="text/javascript" src="./js/devices.js"></script> 
+  <script type="text/javascript" src="./js/echarts.js"></script>
+  <!-- <script type="text/javascript" src="./js/echarts-gl.js"></script> -->
+  <script src="js/crypto-js.js" type="text/javascript" charset="utf-8"></script>
+  <script defer src="./js/cursor.js"></script>
+  <script type="text/javascript" src="./js/fish.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+</head>
+<body>
+
+<div class="container-father">
+
+  <header>
+    <div class="logo" >
+        <img src="./images/mario.png" alt="Logo">
+        <h1>Zhice's Website</h1>
+    </div>
+    <nav>
+        <ul>
+            <li class="table-li" id="devices" onclick="changeTab('devices')"><i class="iconfont icon-equipment"></i> 设备管理</a></li>
+            <li class="table-li" id="monitoring" onclick="changeTab('monitoring')"><i class="iconfont icon-shishijiance"></i> 数据监控</a></li>
+            <li class="table-li" id="alarms" onclick="changeTab('alarms')"><i class="iconfont icon-baojing"></i> 报警管理</a></li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropbtn"><i class="iconfont icon-yonghuguanli"></i> 用户管理 <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="javascript:changePassword()">更改密码</a>
+                    <a href="javascript:logout()">注销</a>
+                </div>
+                 <!-- 更改密码的弹出框 -->
+                <div id="changePasswordModal" class="modal">
+                  <div class="modal-content-change-password">
+                    <h2>更改密码</h2>
+                    <input id="oldPasswordInput" class="modal-input" type="text" placeholder="请输入原密码">
+                    <input id="newPasswordInput" class="modal-input" type="password" placeholder="请输入新密码">
+                    <input id="confirmPasswordInput" class="modal-input" type="password" placeholder="请确认新密码">
+                    <div class="modal-buttons-container">
+                      <button class="modal-button" onclick="confirmChangePassword()">确认</button>
+                      <button class="modal-button" onclick="cancelChangePassword()">取消</button>
+                    </div>
+                  </div>
+                </div>
+            </li>
+            <script>
+                // JavaScript to show/hide dropdown content
+                const dropdownBtn = document.querySelector('.dropbtn');
+                const dropdownContent = document.querySelector('.dropdown-content');
+
+                dropdownBtn.addEventListener('click', () => {
+                    dropdownContent.classList.toggle('show');
+                });
+
+                // Close dropdown when clicking outside
+                window.addEventListener('click', (event) => {
+                    if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdown-content')) {
+                        dropdownContent.classList.remove('show');
+                    }
+                });
+            </script>
+
+        </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+<!--     <nav class="header">
+      <div class="tabs">
+        <div class="tab" id="devices" onclick="changeTab('devices')"><i class="iconfont icon-equipment"></i> 设备管理</div>
+        <div class="tab" id="monitoring" onclick="changeTab('monitoring')"><i class="iconfont icon-shishijiance"></i> 数据监控</div>
+        <div class="tab" id="alarms" onclick="changeTab('alarms')"><i class="iconfont icon-baojing"></i> 报警管理</div>
+      </div>
+      <div class="user-dropdown">
+        <form id="myForm" action="" method="get">
+          <select class="user-dropdown-select" onchange="handleDropdownChange(this)">
+            <option value="" selected disabled hidden >用户管理</option> 
+            <option value="javascript:changePassword()">更改密码</option>
+            <option value="javascript:logout()">注销</option>
+          </select>
+        </form>
+
+        <div id="changePasswordModal" class="modal">
+          <div class="modal-content-change-password">
+            <h2>更改密码</h2>
+            <input id="oldPasswordInput" class="modal-input" type="text" placeholder="请输入原密码">
+            <input id="newPasswordInput" class="modal-input" type="password" placeholder="请输入新密码">
+            <input id="confirmPasswordInput" class="modal-input" type="password" placeholder="请确认新密码">
+            <div class="modal-buttons-container">
+              <button class="modal-button" onclick="confirmChangePassword()">确认</button>
+              <button class="modal-button" onclick="cancelChangePassword()">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+ -->
+    <main class="content" id="devices-content">
+      <div class="header">
+        <h2>设备管理</h2>
+        <button onclick="openRegisterModal()">设备注册</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>版本号</th>
+            <th>序列号</th>
+            <th>温度上限</th>
+            <th>温度下限</th>
+            <th>压力上限</th>
+            <th>压力下限</th>
+            <th>采集间隔</th>
+            <th>电池电量</th>
+            <th>WIFI采集间隔</th>
+          </tr>
+        </thead>
+        <tbody id="devices-tbody"></tbody>
+      </table>
+
+       
+      <div id="register-modal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeRegisterModal()">&times;</span>
+            <h2>设备注册</h2>
+            <form id="register-form" onsubmit="registerDevice(event)">
+              <label for="version">版本号:</label>
+              <select id="version" name="version" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select><br>
+              <!-- <input type="text" id="version" name="version" required><br> -->
+              <label for="serial">序列号:</label>
+              <input type="text" id="serial" name="serial" required><br>
+              <label for="password">密码:</label>
+              <input type="password" id="password" name="password" required><br>
+              <label for="temperature-upper">温度上限:</label>
+              <input type="number" id="temperature-upper" name="temperature-upper" required><br>
+              <label for="temperature-lower">温度下限:</label>
+              <input type="number" id="temperature-lower" name="temperature-lower" required><br>
+              <label for="pressure-upper">压力上限:</label>
+              <input type="number" id="pressure-upper" name="pressure-upper" required><br>
+              <label for="pressure-lower">压力下限:</label>
+              <input type="number" id="pressure-lower" name="pressure-lower" required><br>
+              <label for="interval">采集间隔:</label>
+              <input type="number" id="interval" name="interval" required><br>
+              <label for="battery">电池电量:</label>
+              <input type="number" id="battery" name="battery" required><br>
+              <label for="wifi-interval">WIFI采集间隔:</label>
+              <input type="number" id="wifi-interval" name="wifi-interval" required><br>
+              <div class="modal-buttons-container">
+                <button type="submit">提交</button>
+              </div>
+            </form>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+        function openRegisterModal() {
+          const modal = document.getElementById('register-modal');
+          modal.style.display = 'block';
+        }
+
+        function closeRegisterModal() {
+          const modal = document.getElementById('register-modal');
+          modal.style.display = 'none';
+        }
+
+        function registerDevice(event) {
+          event.preventDefault(); // 阻止表单默认提交行为
+
+          const form = document.getElementById('register-form');
+          const version = form.elements.version.value;
+          const serial = form.elements.serial.value;
+          const password = form.elements.password.value;
+          const temperatureUpper = form.elements['temperature-upper'].value;
+          const temperatureLower = form.elements['temperature-lower'].value;
+          const pressureUpper = form.elements['pressure-upper'].value;
+          const pressureLower = form.elements['pressure-lower'].value;
+          const interval = form.elements.interval.value;
+          const battery = form.elements.battery.value;
+          const wifiInterval = form.elements['wifi-interval'].value;
+
+          // 执行提交到后端的逻辑
+          // 你需要编写相应的 JavaScript 代码将表单数据发送给后端，验证并存储到数据库中
+
+          // 在验证成功后，可以进行一些操作，比如提示注册成功等
+          // 清空表单字段
+          form.reset();
+          closeRegisterModal();
+        }
+      </script>
+    </main>
+    <main class="content" id="monitoring-content" style="display: none;">
+      <h2>数据监控</h2>
+
+      <div id="main" class="dom1" style="width: 800px;height: 600px"></div>
+
+      <div id="main1" class="dom2" style="width: 800px;height: 600px">
+        <select class="main1-select" id="dataSelector">
+        </select>
+        <div id="chartContainer" style="width: 800px;height: 600px"></div>
+      </div>
+
+      <div id="main2" class="dom1" style="width: 800px;height: 600px"></div>
+
+      <div id="main3" class="dom1" style="width: 800px;height: 600px"></div>
+    </main>
+    <main class="content" id="alarms-content" style="display: none;">
+      <h2>报警管理</h2>
+      <!-- 报警管理内容 -->
+      <div class="time-range">
+        <label for="start-time">起始时间:</label>
+        <input type="datetime-local" id="start-time">
+        <label for="end-time">截止时间:</label>
+        <input type="datetime-local" id="end-time">
+
+        <div class="actions">
+        <button onclick="showUnreadAlarms()">未读报警</button>
+        <button onclick="showReadAlarms()">已读预警</button>
+        <button onclick="markAllAsRead()">全部标记为已读</button>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>序列号</th>
+            <th>状态</th>
+            <th>类型</th>
+            <th>事件</th>
+            <th>日期</th>
+          </tr>
+        </thead>
+        <tbody id="unread-alarms-tbody"></tbody>
+        <tbody id="read-alarms-tbody"></tbody>
+      </table>
+    </main>
+
+  </div>
+  <script>
+    // 默认显示设备管理内容
+    changeTab("devices");
+  </script>
+
+
+  <footer id="footer">
+    <div id="jsi-flying-fish-container">
+      <div class="footer">
+        版权所有 © 2023-2025，Zhice | 备案号：XXXXXX | 许可证：XXXXXX
+      </div>  
+    </div>
+    <script>
+      window.onload = () =>{
+          RENDERER.init();
+      }
+    </script>
+  </footer>  
+
+
+
+</div>
+</body>
+
+
+</html>
