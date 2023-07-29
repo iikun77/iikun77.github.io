@@ -9,6 +9,8 @@
   <script type="text/javascript" src="js/jquery.js"></script>
   <script src="js/crypto-js.js" type="text/javascript" charset="utf-8"></script>
   <script defer src="./js/cursor.js"></script>
+  <script src="./js/snowflake.js"></script>
+  <script type="text/javascript" src="./js/fish.js"></script> 
 </head>
 <body>
 <div class="backImg">
@@ -72,9 +74,18 @@
     </div>
   </div>
 
-  <div class="footer">
-    版权声明：版权所有 © 2023-2025，Zhice | 备案号：XXXXXX | 许可证：XXXXXX
-  </div>
+  <footer id="footer">
+    <div id="jsi-flying-fish-container">
+      <div class="footer">
+        版权所有 © 2023-2025，Zhice | 备案号：XXXXXX | 许可证：XXXXXX | 联系方式：xxxx-xxxxxxx
+      </div>  
+    </div>
+    <script>
+      window.onload = () =>{
+          RENDERER.init();
+      }
+    </script>
+  </footer>  
 </div>  
 
 </body>
