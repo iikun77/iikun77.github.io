@@ -7,6 +7,8 @@
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" href="./css/devices.css">
   <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4163735_kg8psu63r7.css">
+  <script src="http://at.alicdn.com/t/c/font_4163735_mv4o7ka45c.js"></script>
+  <link href="./css/clock.css" rel="stylesheet" />
   <!-- <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script> -->
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript" src="./js/devices.js"></script> 
@@ -17,7 +19,10 @@
   <script type="text/javascript" src="./js/fish.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="./js/snowflake.js"></script>
-  
+  <script src="./js/jquery-1.11.0.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+  <script src="./js/clock.js"></script>
+
 </head>
 <body>
 
@@ -30,9 +35,9 @@
     </div>
     <nav>
         <ul>
-            <li class="table-li" id="devices" onclick="changeTab('devices')"><i class="iconfont icon-equipment"></i> 设备管理</a></li>
-            <li class="table-li" id="monitoring" onclick="changeTab('monitoring')"><i class="iconfont icon-shishijiance"></i> 数据监控</a></li>
-            <li class="table-li" id="alarms" onclick="changeTab('alarms')"><i class="iconfont icon-baojing"></i> 报警管理</a></li>
+            <li class="table-li" id="devices" onclick="changeTab('devices')"><i class="iconfont icon-equipment"></i> 设备管理</li>
+            <li class="table-li" id="monitoring" onclick="changeTab('monitoring')"><i class="iconfont icon-shishijiance"></i> 数据监控</li>
+            <li class="table-li" id="alarms" onclick="changeTab('alarms')"><i class="iconfont icon-baojing"></i> 报警管理</li>
 
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropbtn"><i class="iconfont icon-yonghuguanli"></i> 用户管理 <i class="fas fa-caret-down"></i></a>
@@ -54,62 +59,33 @@
                   </div>
                 </div>
             </li>
-            <script>
-                // JavaScript to show/hide dropdown content
-                const dropdownBtn = document.querySelector('.dropbtn');
-                const dropdownContent = document.querySelector('.dropdown-content');
-
-                dropdownBtn.addEventListener('click', () => {
-                    dropdownContent.classList.toggle('show');
-                });
-
-                // Close dropdown when clicking outside
-                window.addEventListener('click', (event) => {
-                    if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdown-content')) {
-                        dropdownContent.classList.remove('show');
-                    }
-                });
-            </script>
-
         </ul>
     </nav>
   </header>
+  <script>
+    // JavaScript to show/hide dropdown content
+    const dropdownBtn = document.querySelector('.dropbtn');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdownBtn.addEventListener('click', () => {
+        dropdownContent.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', (event) => {
+        if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdown-content')) {
+            dropdownContent.classList.remove('show');
+        }
+    });
+</script>
+
+<div class ="container_sidebar">
 
   <div class="container">
-<!--     <nav class="header">
-      <div class="tabs">
-        <div class="tab" id="devices" onclick="changeTab('devices')"><i class="iconfont icon-equipment"></i> 设备管理</div>
-        <div class="tab" id="monitoring" onclick="changeTab('monitoring')"><i class="iconfont icon-shishijiance"></i> 数据监控</div>
-        <div class="tab" id="alarms" onclick="changeTab('alarms')"><i class="iconfont icon-baojing"></i> 报警管理</div>
-      </div>
-      <div class="user-dropdown">
-        <form id="myForm" action="" method="get">
-          <select class="user-dropdown-select" onchange="handleDropdownChange(this)">
-            <option value="" selected disabled hidden >用户管理</option> 
-            <option value="javascript:changePassword()">更改密码</option>
-            <option value="javascript:logout()">注销</option>
-          </select>
-        </form>
-
-        <div id="changePasswordModal" class="modal">
-          <div class="modal-content-change-password">
-            <h2>更改密码</h2>
-            <input id="oldPasswordInput" class="modal-input" type="text" placeholder="请输入原密码">
-            <input id="newPasswordInput" class="modal-input" type="password" placeholder="请输入新密码">
-            <input id="confirmPasswordInput" class="modal-input" type="password" placeholder="请确认新密码">
-            <div class="modal-buttons-container">
-              <button class="modal-button" onclick="confirmChangePassword()">确认</button>
-              <button class="modal-button" onclick="cancelChangePassword()">取消</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
- -->
     <main class="content" id="devices-content">
       <div class="header">
         <h2>设备管理</h2>
-        <button onclick="openRegisterModal()">设备注册</button>
+        <button class="btn" onclick="openRegisterModal()">设备注册</button>
       </div>
       <table>
         <thead>
@@ -247,13 +223,54 @@
         <tbody id="read-alarms-tbody"></tbody>
       </table>
     </main>
-
   </div>
   <script>
     // 默认显示设备管理内容
     changeTab("devices");
   </script>
+  <!-- 侧边栏 -->
+  <div class="sidebar">
+    <div class="card">
+      <div id="clock" class="light">
+        <div class="display">
+          <div class="weekdays"></div>
+          <!-- <div class="ampm"></div> -->
+          <div class="alarm"></div>
+          <div class="digits"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card2">
+      <div class="sidebar-head">
+        <strong> 📢 公 告 </strong>
+      </div>
+      <div class="sidebar-content">
+<p>这是一条公告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告</p>
+      </div>
+    </div>
 
+<!--     <div class="card2">
+      <div class="sidebar-head">
+        <strong> 🎉 简介 🎉</strong>
+      </div>      
+      <div class="sidebar-content">
+      <p>这是一条简介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介介
+      </p>
+      </div>
+    </div> -->
+
+    <div class="card2">
+      <div class="sidebar-head">
+        <strong> 🎉 简 介 </strong>
+      </div>
+      <div class="sidebar-content">
+<p>这是一条公告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告告</p>
+
+      </div>
+    </div>
+
+  </div>
+</div>
 
   <footer id="footer">
     <div id="jsi-flying-fish-container">

@@ -38,24 +38,75 @@
       flex-direction: row;
       min-height: 100vh;
     }*/
-    .container {
-      flex: 1;
+    .container_sidebar {
+      display: flex;
+    }
+    .sidebar {
       max-width: 95vw;
-      /*max-height: 90vh;*/
-      width: 90vw;
+      /*max-height: 100vh;*/
+      width: 20vw;
+      /*height: 90vh;*/
+      margin: 0 auto 0 0;
+      /*顶部黑边*/
+      margin-top: 10px;
+      padding: 20px;
+      background-color: rgba(115,115,115,0.3);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px 10px 10px 10px;
+      display: flex; /* 使用flex布局 */
+      /*flex-wrap: wrap;*/ /* 当卡片超过一行时换行显示 */
+      flex-direction: column; /* 垂直排列时钟容器 */
+      align-items: center; /* 水平居中时钟容器       */
+      /*overflow: hidden;*/
+    }
+
+    .card {
+      width: 19vw; 
+      margin: 10px; 
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+    }
+    .card2 {
+      width: 19vw; 
+      margin: 10px; 
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }    
+    .sidebar-head{
+      font-style: bold;
+      font-size: 20px; 
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-left: -20px;
+      padding-bottom: 8px;
+    }    
+    .container {
+      max-width: 95vw;
+      max-height: 100vh;
+      width: 70vw;
       height: 90vh;
       margin: 0 auto;
       /*顶部黑边*/
       margin-top: 10px;
       padding: 20px;
-      
+
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 10px 10px 10px 10px;
       /*overflow: hidden;*/
     }
     .content {
-      max-height: 100vh;
+      max-height: 85vh;
       /*margin: auto;*/
       overflow: auto;/*滚动条*/
       padding: 20px;
@@ -67,7 +118,7 @@
       /*justify-content: space-between;*/
       justify-content: center;
       align-items: center;
-    }    
+    }
     .tabs {
       margin-bottom: 20px;
     }
@@ -469,4 +520,46 @@ nav ul li:hover {
 .show {
     display: block;
 }
+/*s阿里云图标引入*/
+.icon {
+   width: 2em; height: 2em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+.sidebar-content {
+  /*青色*/
+  /*background: linear-gradient(45deg, #b9f4f3, #e3fbf9);*/
+  background: linear-gradient(45deg, #f2f2f2, #d9d9d9);
+  border-radius: 18px;
+  padding: 8px;
+}
+p{
+  display: block;
+  text-align: left;
+}
+/*设备注册按钮*/
+.btn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  margin-bottom: 10px; 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
 
+/* 悬停效果 */
+.btn:hover {
+  background-color: #45a049;
+}
+
+/* 按下效果 */
+.btn:active {
+  transform: scale(0.95);
+}

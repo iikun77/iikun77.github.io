@@ -22,8 +22,20 @@
 
   }
 
+  //回车登录
+  document.addEventListener("DOMContentLoaded", function() {
+    var usernameInput = document.getElementById("username");
+    var passwordInput = document.getElementById("password");
 
+    usernameInput.addEventListener("keypress", handleKeyPress);
+    passwordInput.addEventListener("keypress", handleKeyPress);
+  });
 
+  function handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      login();
+    }
+  }
 
   function login() {
     // 获取用户名和密码
