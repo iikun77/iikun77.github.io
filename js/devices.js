@@ -315,7 +315,6 @@
     }
 
 
-
   function refreshMonitoringContent() {
       $.ajax({
       url: 'https://mock.presstime.cn/mock/64aca3beace0545a9f41cee1/example/test_2',
@@ -766,23 +765,49 @@
 
           optionsHtml += '<option value="' + serialValue + '" ' + selectedAttr + '>' + serialValue + '</option>';
         }
- 
 
         // 将动态生成的<option>元素添加到下拉列表中
         $('#dataSelector').html(optionsHtml);
 
+        //获取切换选项序号
+        var selectedIndex = document.getElementById('dataSelector').selectedIndex;
+        updateData(selectedIndex);
 
+        // 定义函数根据序号更新数据
+        function updateData(selectedIndex) {
+          if (selectedIndex >= 0) {
+            option2.series[0].data[0].value = data.list[selectedIndex].rainfall;
+            option2.series[1].data[0].value = data.list[selectedIndex].evaporation;
+            myChart2.setOption(option2); // 假设 myChart2 是您的 echarts 实例
+            console.log(selectedIndex+"号数据更新");
+          }
+        }
 
-
- 
+        // 监听下拉选项变化事件,并跳过定时立即更新数据
+        $('#dataSelector').off('change').on('change', function() {
+          // 获取当前选中值的序号
+          selectedIndex = $('#dataSelector')[0].selectedIndex;
+          console.log(selectedIndex);
+            if (selectedIndex >= 0) {
+              option2.series[0].data[0].value = data.list[selectedIndex].rainfall; 
+              option2.series[1].data[0].value = data.list[selectedIndex].evaporation; 
+              myChart2.setOption(option2);
+              console.log("切换成功");
+            }
+        });
 
         // 遍历返回的数据列表，提取降雨量和蒸发量的数值
         data.list.forEach(function(item) {
           xAxisData.push(item.serial);
           series1Data.push(item.rainfall);
-          series2Data.push(item.evaporation);   
-          option2.series[0].data[0].value = item.battery; 
-          option2.series[1].data[0].value = item.battery; 
+          series2Data.push(item.evaporation);
+
+
+          option2.series[0].data[0].value = data.list[0].rainfall; 
+          option2.series[1].data[0].value = data.list[0].evaporation;
+
+          // option2.series[0].data[0].value = item.battery; 
+          // option2.series[1].data[0].value = item.battery; 
           //采集次数
           var intervalObject ={
             value: item.interval,

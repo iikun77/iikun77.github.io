@@ -1,3 +1,7 @@
+// Copyright (c) 2023 by K-T (https://codepen.io/K-T/pen/NWKzXbj)
+
+
+
 var RENDERER = {
     POINT_INTERVAL : 5,
     FISH_COUNT : 3,
