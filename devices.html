@@ -2,6 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <!-- 实现响应式布局 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>系统界面</title>
   <link rel="stylesheet" href="./css/cursor.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -10,20 +12,25 @@
   <script src="https://at.alicdn.com/t/c/font_4163735_mv4o7ka45c.js"></script>
   <link href="./css/clock.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="./css/font.css" />
-  <!-- <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script> -->
-  <script type="text/javascript" src="./js/jquery.js"></script>
-  <script type="text/javascript" src="./js/devices.js"></script> 
-  <script type="text/javascript" src="./js/echarts.js"></script>
+  <!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/devices.js"></script>
+  <!-- <script type="text/javascript" src="./js/echarts.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   <!-- <script type="text/javascript" src="./js/echarts-gl.js"></script> -->
   <script src="js/crypto-js.js" type="text/javascript" charset="utf-8"></script>
   <script defer src="./js/cursor.js"></script>
   <script type="text/javascript" src="./js/fish.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="./js/snowflake.js"></script>
-  <script src="./js/jquery-1.11.0.min.js"></script>
+  <!-- <script src="./js/jquery-1.11.0.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
   <script src="./js/clock.js"></script>
-
+  <!-- IE兼容 -->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.min.js@1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 
@@ -184,7 +191,7 @@
 
       <div id="main" class="dom1" style="width: 800px;height: 600px"></div>
 
-      <div id="main1" class="dom2" style="width: 800px;height: 600px">
+      <div id="main1" class="dom1" style="width: 800px;height: 600px">
         <select class="main1-select" id="dataSelector">
         </select>
         <div id="chartContainer" style="width: 800px;height: 600px"></div>
@@ -295,7 +302,7 @@
           </div>
         </div>
       </div>
-    </div>    
+    </div>
 
   </div>
 </div>

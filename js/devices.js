@@ -1,3 +1,21 @@
+// 输出字符画
+    function makeMulti (string) {
+        let l = new String(string)
+        l = l.substring(l.indexOf("/*") + 3, l.lastIndexOf("*/"))
+        return l
+    }
+    let string = function () {
+      /* 
+ ____  _   _  ____  ___  ____ 
+(_   )( )_( )(_  _)/ __)( ___)
+ / /_  ) _ (  _)(_( (__  )__) 
+(____)(_) (_)(____)\___)(____)
+      */
+    }
+    console.log(makeMulti(string));
+
+
+
           function changePassword() {
             // 显示更改密码的弹出框
             var modal = document.getElementById("changePasswordModal");
@@ -320,7 +338,10 @@
       url: 'https://mock.presstime.cn/mock/64aca3beace0545a9f41cee1/example/test_2',
       type: 'GET',
       success: function(data) {
+
+
         var myChart1= echarts.getInstanceByDom(document.getElementById('main'));
+
         if (myChart1== null) { // 如果不存在，就进行初始化。
           myChart1= echarts.init(document.getElementById('main'));
         }        
@@ -423,7 +444,7 @@
         var series2Data = [];
         
 
-        var myChart2= echarts.getInstanceByDom(document.getElementById('main1'));
+        var myChart2= echarts.getInstanceByDom(document.getElementById('chartContainer'));
         if (myChart2== null) { // 如果不存在，就进行初始化。
           myChart2= echarts.init(document.getElementById('chartContainer'));
         }          

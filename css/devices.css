@@ -141,24 +141,24 @@
     
 
     .dom1 {
-      flex: 1;
-      width: 800px;
-      height:600px;
-      /*display: inline-flex;*/
+      /*flex: 1;*/
+     /* width: 800px;
+      height:600px;*/
+      display: inline-flex;
       margin-left: 80px;
       padding: 15px;
-      float: left;
-
+      /*float: left;*/
+      position: relative;
     }
     .dom2 {
-      flex: 1;
+/*      flex: 1;
       width: 800px;
-      height:600px;
+      height:600px;*/
       /*display: inline-flex;*/
       margin-left: 50px;
       padding: 15px;
       position: relative;
-      float: left;
+      /*float: left;*/
 
 
     }    
@@ -564,3 +564,45 @@ p{
 .btn:active {
   transform: scale(0.95);
 }
+
+
+/*后续设备宽 自适应*/
+/*要注意使用顺序，所以在使用min-width时，小的在前面，大的在后面；
+同理，如果使用max-width时，就是大的在前面，小的在后面。*/
+/*常见屏幕分辨率*/
+/*分辨率     比例 | 设备尺寸
+1024*500    （8.9寸）
+1024*768    （比例 4：3  | 10.4寸、12.1寸、14.1寸、15寸; ）
+1280*800    （比例 16：10  |15.4寸）
+1280*1024   （比例 5：4  | 14.1寸、15.0寸）
+1280*854    （比例 15：10 | 15.2）
+1366*768    （比例 16：9 | 不常见）
+1440*900    （比例 16：10  17寸 仅苹果用）
+1440*1050   （比例 5：4  | 14.1寸、15.0寸）
+1600*1024   （比例 14：9  不常见）
+1600*1200   （比例 4：3 | 15、16.1）
+1680*1050   （比例 16：10 | 15.4寸、20.0寸）
+1920*1200   （23寸）
+*/
+
+/*当屏幕宽度大于等于2000像素时生效。*/
+/*@media screen and (min-width: 2000px) {
+    .container {
+        width:76vw;
+    }
+}*/
+
+/*当屏幕宽度小于等于900px生效*/
+/*！important 提高了优先级确保在小屏幕下生效*/
+/*@media screen and (max-width: 900px) {
+    .container_sidebar>div:first-child {
+        width:100%!important;
+    }
+}*/
+
+/*屏幕宽度大于等于960，小于等于1200*/
+/*@media screen and (min-width:960px) and (max-width:1200px){
+    body{
+        background:yellow;
+    }
+}*/
